@@ -155,7 +155,11 @@ def get_outcome_status_details(outcome):
 
 def get_status(exception):
     if exception:
-        return Status.FAILED
+        if isinstance(exception, AssertionError) or isinstance(exception, pytest.fail.Exception):
+            return Status.FAILED
+        elif isinstance(exception, pytest.skip.Exception):
+            return Status.SKIPPED
+        return Status.BROKEN
     else:
         return Status.PASSED
 
