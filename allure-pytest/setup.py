@@ -41,12 +41,12 @@ install_requires = [
 ]
 
 
-def prepare_version():
-    from setuptools_scm import get_version
-    configuration = {"root": "..",  "relative_to": __file__}
-    version = get_version(**configuration)
-    install_requires.append(f"allure-python-commons=={version}")
-    return configuration
+# def prepare_version():
+#     from setuptools_scm import get_version
+#     configuration = {"root": "..",  "relative_to": __file__}
+#     version = get_version(**configuration)
+#     install_requires.append(f"allure-python-commons=={version}")
+#     return configuration
 
 
 def get_readme(fname):
