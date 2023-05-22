@@ -223,10 +223,14 @@ class AllureListener:
             if test_result.status == Status.PASSED:
                 test_result.status = status
                 test_result.statusDetails = status_details
+                
+            if status in (Status.FAILED, Status.BROKEN):
+                test_result.status = Status.FAILED
+                test_result.statusDetails = status_details
 
         if report.when == 'teardown':
-            if status in (Status.FAILED, Status.BROKEN) and test_result.status == Status.PASSED:
-                test_result.status = status
+            if status in (Status.FAILED, Status.BROKEN):
+                test_result.status = Status.FAILED
                 test_result.statusDetails = status_details
 
             if self.config.option.attach_capture:
